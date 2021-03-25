@@ -1,0 +1,116 @@
+
+
+insert into ud_entry
+(entry_date, entry_num, is_no_publish, entry_title, entry_text, priority, insert_datetime, update_datetime)
+select dateadd(d, 1, entry_date), entry_num, is_no_publish, 
+	entry_title + ' ' + convert(nvarchar(10), dateadd(d, 1, entry_date), 101), 
+	entry_text, priority, insert_datetime, update_datetime
+from ud_entry
+where entry_id in (1, 2)
+
+
+
+insert into uc_report
+(display_name, rdlc_name, data_source, datatable_key, parameters, is_active)
+values
+('Attendance, By Kid', 'rptAttendance.rdlc', 'hsdReportDS_DT22Various', 'attendance_by_kid', 'title, start_date, end_date, kid_id', 1);
+
+insert into uc_report
+(display_name, rdlc_name, data_source, datatable_key, parameters, is_active)
+values
+('Entries, Title Only', 'rptEntriesTitleOnly.rdlc', 'hsdReportDS_DT22Various', 'entries_titles_by_date', 'title, start_date, end_date, kid_id, subject_id', 1);
+
+insert into uc_report
+(display_name, rdlc_name, data_source, datatable_key, parameters, is_active)
+values
+('Entries, With Full Description', 'rptEntriesFullDescription.rdlc', 'hsdReportDS_DT22Various', 'entries_full_by_date', 'title, start_date, end_date, kid_id, subject_id', 1);
+
+insert into uc_report
+(display_name, rdlc_name, data_source, datatable_key, parameters, is_active)
+values
+('Time Spent Per Date, By Kid', 'rptTimeSpentPerDateByKid.rdlc', 'hsdReportDS_DT22Various', 'time_spent_per_date_by_kid', 'title, start_date, end_date, kid_id', 1);
+
+insert into uc_report
+(display_name, rdlc_name, data_source, datatable_key, parameters, is_active)
+values
+('Time Spent Per Subject, By Kid', 'rptTimeSpentPerSubjectByKid.rdlc', 'hsdReportDS_DT22Various', 'time_spent_per_subject_by_kid', 'title, start_date, end_date, kid_id, subject_id', 1);
+
+
+
+/*
+update uc_report
+set display_name = 'Activity Summary, All',
+	rdlc_name = 'rptActivitySummaryAll.rdlc',
+	datatable_key = 'activity_summary_all'
+where display_name = 'Activity Summary'
+*/
+
+
+/*
+insert into uc_report
+(display_name, rdlc_name, data_source, datatable_key, parameters, is_active)
+values
+('Activity Summary By Kid', 'rptActivitySummaryByKid.rdlc', 'hsdReportDS_DT10Strings', 'activity_summary_by_kid', '@start_date, @end_date', 1);
+*/
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (0, 'Flat System', 1);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (1, 'Flat Blue', 1);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (2, 'Gloss Blue', 1);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (3, 'Gloss Silver', 1);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (4, 'Gloss Dark', 1);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (5, 'Gloss Dark/Blue', 0);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (6, 'Gloss Dark/Orange', 0);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (7, 'Gloss Dark (Purple)', 1);
+
+insert into uc_palette (palette_id, palette_name, is_active)
+values (8, 'Custom', 0);
+
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('Font', 'string', 'system');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('KryptonPalette', 'int', '2');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('ShowDPIWarning', 'bool', '1');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('ShowScreenResWarning', 'bool', '1');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('ShowSidebarFnHints', 'bool', '1');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('AutoSendProblemInfo', 'bool', '1');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('PlaySounds', 'bool', '1');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('TrialUses', 'int', '0');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('LicenseEmail', 'string', 'trialuser@homeschooldaybook.com');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('LicenseNumber', 'string', '000000000');
+
+insert into uc_setting (setting_name, datatype, setting_value)
+values ('DatabaseVersion', 'decimal', '1.00');
+

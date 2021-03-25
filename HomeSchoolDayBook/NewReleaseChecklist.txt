@@ -1,0 +1,26 @@
+﻿
+
+	Things we need to review each time we issue a new release:
+
+Save old exe and especially installer, incremented with version number.
+
+AssemblyInfo.cs:  did you increment the version number?
+
+
+
+
+
+
+
+
+
+
+
+	Things to review each time there is a db change:
+
+HSDMain.cs: did you change the file name?
+HSDMain.cs: did you change the db version number?
+
+Database: did you increment the version number stored INSIDE uc_setting?
+
+Send a warning to the user upon upgrade reminding them that old backups are invalid.

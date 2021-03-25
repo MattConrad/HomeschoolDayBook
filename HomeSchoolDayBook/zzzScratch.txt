@@ -1,0 +1,42 @@
+﻿select convert(nvarchar(11), ek.kid_id) as String1, 
+  uck.first_name as String2, 
+  convert(nvarchar(11), es.subject_id) as String3, 
+  ucs.subject_desc as String4, 
+  sum(e.minutes_spent) as Int1 
+ from ud_entry as e 
+ inner join ud_entry_to_subject as es 
+ on e.entry_id = es.entry_id 
+ inner join uc_subject as ucs 
+ on es.subject_id = ucs.subject_id 
+ inner join ud_entry_to_kid as ek 
+ on e.entry_id = ek.entry_id 
+ inner join uc_kid as uck 
+ on ek.kid_id = uck.kid_id 
+ where e.minutes_spent is not null 
+      and e.entry_date >= @start_date 
+      and e.entry_date <= @end_date 
+      and exists (select * from ud_entry_to_kid as iek where e.entry_id = iek.entry_id and (iek.kid_id = @kid_id or @kid_id = -1) ) 
+      and exists (select * from ud_entry_to_subject as ies where e.entry_id = ies.entry_id and (ies.subject_id = @subject_id or @subject_id = -1) ) 
+ group by ek.kid_id, uck.first_name, es.subject_id, ucs.subject_desc 
+ order by uck.first_name, ucs.subject_desc ;
+
+
+select convert(nvarchar(11), ek.kid_id) as String1, 
+	 uck.first_name as String2, 
+	 convert(nvarchar(10), e.entry_date, 101) + ' (' + datename(dw, e.entry_date) + ')' as String3, 
+	 sum(e.minutes_spent) as Int1 
+from ud_entry as e 
+inner join ud_entry_to_kid as ek 
+on e.entry_id = ek.entry_id 
+inner join uc_kid as uck 
+on ek.kid_id = uck.kid_id 
+where e.minutes_spent is not null 
+     and e.entry_date >= @start_date 
+     and e.entry_date <= @end_date 
+     and (ek.kid_id = @kid_id or @kid_id = -1) 
+group by ek.kid_id, uck.first_name, e.entry_date
+order by uck.first_name, e.entry_date desc;
+:pd @start_date
+:pd @end_date
+:pi @kid_id
+:n _sqcGetRTimeSpentPerDateByKid

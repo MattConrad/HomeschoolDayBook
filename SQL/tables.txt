@@ -1,0 +1,69 @@
+create table ud_entry
+(entry_id int NOT NULL IDENTITY,
+entry_date datetime NOT NULL,
+is_no_publish bit NOT NULL,
+entry_title nvarchar(100) NOT NULL,
+entry_text ntext NOT NULL,
+minutes_spent int NULL,
+priority int NOT NULL,
+insert_datetime datetime NOT NULL,
+update_datetime datetime NOT NULL);
+
+alter table ud_entry add constraint PK_ud_entry__entry_id PRIMARY KEY (entry_id);
+
+create table uc_kid
+(kid_id int IDENTITY NOT NULL,
+first_name nvarchar(50) NOT NULL,
+is_default_involved bit NOT NULL,
+is_active bit NOT NULL);
+
+alter table uc_kid add constraint PK_uc_kid__kid_id PRIMARY KEY (kid_id);
+
+create table ud_entry_to_kid
+(entry_id int NOT NULL,
+kid_id int NOT NULL);
+
+alter table ud_entry_to_kid add constraint PK_ud_entry_to_kid__entry_id_kid_id PRIMARY KEY (entry_id, kid_id);
+alter table ud_entry_to_kid add constraint FK_ud_entry_to_kid__ud_entry FOREIGN KEY (entry_id) REFERENCES ud_entry (entry_id);
+alter table ud_entry_to_kid add constraint FK_ud_entry_to_kid__uc_kid FOREIGN KEY (kid_id) REFERENCES uc_kid (kid_id);
+
+create table uc_subject
+(subject_id int NOT NULL IDENTITY,
+subject_desc nvarchar(100) NOT NULL,
+priority int NOT NULL,
+is_active bit NOT NULL);
+
+alter table uc_subject add constraint PK_uc_subject__subject_id PRIMARY KEY (subject_id);
+
+create table ud_entry_to_subject
+(entry_id int NOT NULL, 
+subject_id int NOT NULL);
+
+alter table ud_entry_to_subject add constraint PK_ud_entry_to_subject__entry_id_subject_id PRIMARY KEY (entry_id, subject_id);
+alter table ud_entry_to_subject add constraint FK_ud_ud_entry_to_subject__ud_entry FOREIGN KEY (entry_id) REFERENCES ud_entry (entry_id);
+alter table ud_entry_to_subject add constraint FK_ud_entry_to_subject__uc_subject FOREIGN KEY (subject_id) REFERENCES uc_subject (subject_id);
+
+create table uc_report
+(report_id int NOT NULL IDENTITY,
+display_name nvarchar(100) NOT NULL,
+rdlc_name nvarchar(100) NOT NULL,
+data_source nvarchar(50) NOT NULL,
+datatable_key nvarchar(50) NOT NULL,
+parameters nvarchar(255) NOT NULL,
+is_active bit NOT NULL);
+
+alter table uc_report add constraint PK_uc_report__report_id PRIMARY KEY (report_id);
+
+create table uc_setting
+(setting_name nvarchar(30) NOT NULL,
+datatype nvarchar(15) NOT NULL,
+setting_value nvarchar(100) NOT NULL);
+
+alter table uc_setting add constraint PK_uc_setting__setting_name PRIMARY KEY (setting_name);
+
+create table uc_palette
+(palette_id int NOT NULL,
+palette_name nvarchar(30) NOT NULL,
+is_active bit NOT NULL);
+
+alter table uc_palette add constraint PK_uc_palette__palette_id PRIMARY KEY (palette_id);

@@ -1,0 +1,85 @@
+﻿1.1.1  2021-03-25:
+holy cow. more than 10 years since the last major change.
+removed all the licensing and licensing related stuff. still builds, still seems to run.
+can we still run the setup packager? it's been a long time.
+
+
+1.0.10 (dbv 1.00) 2010-12-13:
+added "some" support for higher DPI settings, by adding a scaling 
+setting to frcAttendance:InitDayControlsForTablePanel().
+to allow custom scaling, had to add a new system setting, which in turn 
+required many new changes to SystemSettings.cs (see header comments there).
+small tweak to CEDBHandler comments.
+some changes to frcSystemSettings.cs, nothing suprising.
+
+1.0.09 "b" (dbv 1.00) 2010-12-13:
+I always thought "b" releases were stupid and here I am doing one.
+I'm on a new machine that does not have the "complete" Krypton toolkit installation, so I added a \lib folder
+with the Krypton DLL and changed the reference from the "big" .NET assembly cache to the \lib folder.
+Also, I had to uncheck the "sign the ClickOnce manifests" box in project properties--Signing before the 
+project would build on the new machine.
+This should NOT change anything important about the .exe, and indeed the byte size is identical between the 
+previous build and today's build. I do not think I need to do a new official release.
+But just in case something subtle ends up broken, I mention these changes here.
+
+1.0.9   (dbv 1.00)  2010-05-20:
+changed the following queries:
+_sqcGetDTitlesByDateRange
+_sqcGetDTitlesByTargetDate
+_sqcGetREntriesByDate
+to explicitly order by entry_id after other orderings applied.  this is to fix a weird case
+with Cindy V-T where her 19th entry started at the top of the daily list.
+decided to order by entry_id rather than insert_datetime bc system clock glitches could make things "weird"
+and entry_id should be safer in that regard.
+
+1.0.8   (dbv 1.00)  2010-03-15:
+altered error handling to post to PHP page instead of sending email via gmail.
+added extra instructions to Manage Entries page.
+added extra instructions to Choose Reports page.
+
+1.0.7   (dbv 1.00)  2009-04-13:
+added a history feature to frmDayBookEntry.txtTitle.
+put a MaxLength on frmDayBookEntry.txtTitle and MaxLengths in all the wizard popups.  oops!
+tiny Vista-improvement layout change
+
+1.0.6   (dbv 1.00)  2009-03-29:
+added backup and restore feature.
+also, tweaked schedule for autobackups.
+also, tweaked frcDayBookEntry Save-and-Next to set focus to entry title (rather than date).
+
+added setting "DatabaseVersion" to uc_settings.  obviously, cannot add to previous versions.
+did NOT add auto-insert code for when not present.  instead, BackupRestore.cs checks 
+for absence of this setting and fakes it to "1.00" if it isn't found.
+
+since BackupRestore.cs is currently the only place this setting is used, this is OK for now.
+later, we may need to add auto-insert code.
+
+
+1.0.5   2009-03-21:
+argh!  fixing date localization broke ordering on at least one report. now fixed.
+decided to increment version #, maybe someone downloaded 1.0.4.
+
+1.0.4   2009-03-19:
+Guess what?  Canadians use dd/MM/yyyy formatting for dates.  And it crashed attendance & reports in 1.0.3.
+Improved date localization.  Is a little tricky, nearly missed a bug, but I think I got em all.
+Several revisions to reports.  Time Spent Per Date by kid has ugly expression you may need later.
+Key reporting tricks:  
+	reports must have Language defined as "=User!Language".
+	in a report, =DateTime1.Value.ToString also shows time (useless, ugly), but ="" & DateTime1.Value
+		shows date only, which is what we want.
+
+1.0.3   2009-03-12
+added Environment.OSVersion.VersionString to exception catching, started using x.ToString() in exception
+reporting (it contains inner exception info), revised exception handling to still report in case
+of database disasters (previously, exception reporting gave up if no sys settings).
+
+1.0.2	2009-03-02
+Fixed bug in frcChooseReports where new kids & subjects were not applied w/out restart.
+
+1.0.1    2009-03-01
+Recompiled with to x86 only, attempting to force WOW use and fix crashes on Vista 64.
+Also added copyright notice to frcSystemSettings.
+Made tiny change to EULA.txt (added line break).
+
+1.0.0	 2009-02-28
+Initial public release.

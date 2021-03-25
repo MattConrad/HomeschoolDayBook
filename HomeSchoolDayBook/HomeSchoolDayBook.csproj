@@ -1,0 +1,386 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{12C03464-2D60-442E-9AE4-9C1C62B0ABE4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HomeSchoolDayBook</RootNamespace>
+    <AssemblyName>HomeSchoolDayBook</AssemblyName>
+    <ApplicationIcon>Home2.ico</ApplicationIcon>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>CA0382129F4B03D96D0A3B549D74E10C6DBC9221</ManifestCertificateThumbprint>
+    <ManifestKeyFile>HomeSchoolDiary_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>http://localhost/HomeSchoolDayBook/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>0.9.8.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=3.0.10.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ComponentFactory.Krypton.Toolkit.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServerCe.Client, Version=3.5.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\Microsoft SQL Server Compact Edition\v3.5\Tools\Microsoft.SqlServerCe.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackupRestore.cs" />
+    <Compile Include="frcSystemSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frcSystemSettings.Designer.cs">
+      <DependentUpon>frcSystemSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frbHSDWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frbHSDWizard.Designer.cs">
+      <DependentUpon>frbHSDWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frcManageEntries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frcManageEntries.designer.cs">
+      <DependentUpon>frcManageEntries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frcAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frcAttendance.designer.cs">
+      <DependentUpon>frcAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frcChooseReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frcChooseReports.Designer.cs">
+      <DependentUpon>frcChooseReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frpReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frpReportViewer.Designer.cs">
+      <DependentUpon>frpReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frbHSDChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frbHSDChild.Designer.cs">
+      <DependentUpon>frbHSDChild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CEDBHandler.cs" />
+    <Compile Include="CustomControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frcDayBookEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frcDayBookEntry.Designer.cs">
+      <DependentUpon>frcDayBookEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frcManageSubjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frcManageSubjects.Designer.cs">
+      <DependentUpon>frcManageSubjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frcManageKids.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frcManageKids.Designer.cs">
+      <DependentUpon>frcManageKids.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaster.designer.cs">
+      <DependentUpon>frmMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frbHSDAppearance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frbHSDAppearance.Designer.cs">
+      <DependentUpon>frbHSDAppearance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frpSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frpSplash.Designer.cs">
+      <DependentUpon>frpSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frpWizardHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frpWizardHost.Designer.cs">
+      <DependentUpon>frpWizardHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frwFirstTimeConclusion5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frwFirstTimeConclusion5.Designer.cs">
+      <DependentUpon>frwFirstTimeConclusion5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frwFirstTimeIntro1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frwFirstTimeIntro1.Designer.cs">
+      <DependentUpon>frwFirstTimeIntro1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frwFirstTimeKids2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frwFirstTimeKids2.Designer.cs">
+      <DependentUpon>frwFirstTimeKids2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frwFirstTimeSubjectsA3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frwFirstTimeSubjectsA3.Designer.cs">
+      <DependentUpon>frwFirstTimeSubjectsA3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frwFirstTimeSubjectsB4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frwFirstTimeSubjectsB4.Designer.cs">
+      <DependentUpon>frwFirstTimeSubjectsB4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HSDMain.cs" />
+    <Compile Include="hsdReportDS.cs">
+      <DependentUpon>hsdReportDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="hsdReportDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hsdReportDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frcAttendance.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frcAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frbHSDAppearance.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frbHSDAppearance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frpWizardHost.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frpWizardHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frwFirstTimeConclusion5.resx">
+      <DependentUpon>frwFirstTimeConclusion5.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frwFirstTimeIntro1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frwFirstTimeIntro1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frwFirstTimeKids2.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frwFirstTimeKids2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frwFirstTimeSubjectsA3.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frwFirstTimeSubjectsA3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frwFirstTimeSubjectsB4.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frwFirstTimeSubjectsB4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptTimeSpentPerSubjectByKid.rdlc" />
+    <EmbeddedResource Include="frcManageEntries.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frcManageEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frcChooseReports.resx">
+      <DependentUpon>frcChooseReports.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frpReportViewer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frpReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frbHSDChild.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frbHSDChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frcDayBookEntry.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frcDayBookEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frcManageSubjects.resx">
+      <DependentUpon>frcManageSubjects.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frcManageKids.resx">
+      <DependentUpon>frcManageKids.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaster.resx">
+      <DependentUpon>frmMaster.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptEntriesFullDescription.rdlc" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="hsdReportDS.xsc">
+      <DependentUpon>hsdReportDS.xsd</DependentUpon>
+    </None>
+    <None Include="hsdReportDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>hsdReportDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="hsdReportDS.xss">
+      <DependentUpon>hsdReportDS.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="StaticMethods.cs" />
+    <Compile Include="SystemSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="document.ico" />
+    <Content Include="Home.ico" />
+    <Content Include="Home2.ico" />
+    <Content Include="NewReleaseChecklist.txt" />
+    <Content Include="NOTES.txt" />
+    <EmbeddedResource Include="frcSystemSettings.resx">
+      <DependentUpon>frcSystemSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frpSplash.resx">
+      <DependentUpon>frpSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resSQLCommands.sql" />
+    <EmbeddedResource Include="rptAttendance.rdlc" />
+    <EmbeddedResource Include="rptEntriesTitleOnly.rdlc" />
+    <EmbeddedResource Include="rptTimeSpentPerDateByKid.rdlc" />
+    <Content Include="TODOS.txt" />
+    <Content Include="VersionInfo.txt" />
+    <Content Include="zzzScratch.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

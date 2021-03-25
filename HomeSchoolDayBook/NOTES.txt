@@ -1,0 +1,6 @@
+***Pre-release requirements:***
+
+Installer MUST NOT overwrite existing install.   onlyifdoesntexist?
+Write an updater that will fix .exe and DLLs.
+Test uninstall after running updater.
+

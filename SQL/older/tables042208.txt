@@ -1,0 +1,46 @@
+create table ud_entry
+(entry_id int NOT NULL IDENTITY PRIMARY KEY,
+entry_date datetime NOT NULL,
+entry_num int NOT NULL,
+is_no_publish bit NOT NULL,
+entry_title nvarchar(100) NOT NULL,
+entry_text ntext NOT NULL,
+minutes_spent int NULL,
+priority int NOT NULL,
+insert_datetime datetime NOT NULL,
+update_datetime datetime NOT NULL
+)
+
+--create index idx_ud_entry_entry_id on ud_entry (entry_id)
+
+create unique index uq_ud_entry_entry_date_entry_num on ud_entry (entry_date, entry_num)
+
+create table uc_kid
+(kid_id int IDENTITY NOT NULL PRIMARY KEY,
+first_name nvarchar(50) NOT NULL,
+last_name nvarchar(50) NULL,
+is_active bit NOT NULL)
+
+create table ud_entry_to_kid
+(entry_id int NOT NULL,
+kid_id int NOT NULL)
+
+alter table ud_entry_to_kid add constraint PK_ud_entry_to_kid__entry_id_kid_id PRIMARY KEY (entry_id, kid_id)
+
+--create unique index uq_ud_entry_to_kid_entry_id_kid_id on ud_entry_to_kid (entry_id, kid_id)
+
+--create index idx_ud_entry_to_kid_entry_id on ud_entry_to_kid (entry_id)
+
+create table uc_subject
+(subject_id int NOT NULL IDENTITY PRIMARY KEY,
+subject_desc nvarchar(100) NOT NULL,
+priority int NOT NULL,
+is_active bit NOT NULL)
+
+create table ud_entry_to_subject
+(entry_id int NOT NULL PRIMARY KEY, 
+subject_id int NOT NULL PRIMARY KEY)
+
+--create unique index uq_ud_entry_to_subject_entry_id_subject_id on ud_entry_to_subject (entry_id, subject_id)
+
+--create index idx_ud_entry_to_subject_entry_id on ud_entry_to_subject (entry_id)
